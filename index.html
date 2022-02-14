@@ -11,76 +11,123 @@
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play Season of Glass.</tw-noscript></noscript></tw-story>
 <tw-storydata name="Season of Glass" startnode="1" creator="Twine" creator-version="2.3.16" ifid="24CF5083-5C16-41AA-AE42-1A9EF1817905" zoom="1" format="Harlowe" format-version="3.2.3" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,400;0,500;0,700;1,200;1,400;1,700&display=swap');
 
-tw-story { 
- 		background-color: #38312d; 
-  	  	font-family: 'Kanit', sans serif;
-	  	font-size: 1em;
-	   	font-weight: 200; 
-  		color: rgba(175 146 121 / 70%);
-	}
-
-p {
-  		margin-top: 0.5em;
-	  	margin-bottom: 0.5em;
-	}
-
-tw-passage p {
- 		text-indent: 2em; 
-  		align-items: start;
-	}
-
-h1, h1 a, h1 a:hover {
-  	text-decoration: none !important;	
-    font-variant-caps: small-caps;
-    font-size: xx-large;
-    font-weight: 270;
-	}
-
-blockquote {
-    font-size: 80%;
-    color: rgb(171 139 124 / 90%);
-    line-height: 1.5em; 
+/*============= vars =============*/
+:root {
+--main-font-color: #AE9179;
+--main-bg-color: #38312D;
+--main-highlight-color: #FFE7BC;
+--hover-highlight-color: #E5A461;
+--font-size-big: xx-large;
+--font-size-normal: 1em;
+--font-weight-normal: 200;
+--font-weight-bold: 400;
+--font-weight-extra-bold: 600;
 }
+
+/*========= standard tags ========*/
 
 a, a:visited, a:active, tw-link  {
-	color: #ffe7bcd1;
-    text-decoration: none;
-    transition: color 0.2s ease-in-out;
-  	font-weight: normal;
+  				color: var(--main-highlight-color);
+    			text-decoration: none;
+    			transition: color 0.2s ease-in-out;
+  				font-weight: var(--font-weight-normal);
 	}
 
-a:hover, tw-link:hover {
-  		color: #e5a461d1;
-		text-decoration-color: #e5a461d1;
+a:hover, 
+tw-link:hover { color: var(--hover-highlight-color);
+				text-decoration-color: var(--hover-highlight-color);
 	}
 
-#title { margin-top: 10em;}
-#title a { text-decoration: underline solid 1px !important;
-			font-weight: 100;}
+h1, h1 a, h1 a:hover, 
+h1 tw-link, h1 tw-link:hover {  	
+  				text-decoration: none !important;	
+   				font-variant-caps: small-caps;
+    			font-size: var(--font-size-big);
+    			font-weight: var(--font-weight-extra-bold);
+	}
 
+blockquote {    font-size: 95%;
+    			color: var(--main-font-color);
+    			line-height: 1.2em; 
+	}
+
+p {				margin-top: 0.5em;
+	  			margin-bottom: 0.5em;
+	}
+
+/* ======= twine specific =======*/
+
+tw-story {  	background-color: var(--main-bg-color); 
+  	  			font-family: 'Kanit', sans serif;
+	  			font-size: var(--font-size-normal);
+	   			font-weight: var(--font-weight-normal); 
+  				color: var(--main-font-color);
+	}
+
+tw-passage p {	text-indent: 2em; 
+  				align-items: start;
+	}
+
+/* ====== classes and IDs ======*/
+
+#title { 		margin-top: 8em;    
+  		 		color: var(--main-font-color);
+	}
+
+#title:hover {
+  		 		background: linear-gradient(to right, var(--main-font-color), 						white 10%, var(--main-font-color) 20%);
+  		 		background-position: 0;
+  		 		-webkit-background-clip: text;
+  		 		-webkit-text-fill-color: transparent;
+  		 		animation: shine 2s 1 linear;
+  		 		animation-fill-mode: forwards;
+  				-webkit-text-size-adjust: none;
+  		 		white-space: nowrap;
+	     		position: relative !important;
+	}
+
+/* ======= jank fixes =========*/
+
+/*this fixes animations for some reason*/
+*, :before, 
+:after {  		position: initial;
+	}
+
+/*remove default bullets*/
 ul {
-  list-style: none; /* Remove default bullets */
-}
-
+  				list-style: none; 
+	}
+/*add St. C logo bullets*/
 ul li::before {
-    content: "\260c";
-    color: #e5a461d1;
-    font-weight: bold;
-    display: inline-block;
-    width: 1.5em;
-    margin-left: -1em;
-}
+    			content: "\260c";
+    			color: var(--main-highlight-color);
+    			font-weight: bold;
+    			display: inline-block;
+    			width: 1.5em;
+    			margin-left: -1em;
+	}
 
+/*no ugly focus on input*/
 tw-expression[name="input-box"] { 
-     display: inline-flex !important;
+     			display: inline-flex !important;
 }
 tw-expression[name="input-box"] textarea:focus-visible { 
     outline: none;
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="START" tags="" position="398,401.5" size="100,100">(set: $hasInventory to false)
+}
+
+/* ====== animations ======== */
+
+/*glass shine animation*/
+
+@keyframes shine {
+  				0%{	background-position: 0}
+  				50%{	background-position: 220px}
+  				100%{	background-position: 250px}
+	}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="START" tags="" position="398,401.5" size="100,100">(set: $hasInventory to false)
 (set: $name to &quot;&quot;)
 
 =&gt;&lt;=
-&lt;h1 id=&quot;title&quot;&gt;Season of [[Glass-&gt;Intro]]&lt;/h1&gt;
+&lt;h1 id=&quot;title&quot;&gt;[[Season of Glass-&gt;Intro]]&lt;/h1&gt;
 
 </tw-passagedata><tw-passagedata pid="2" name="Intro" tags="" position="554,398.5" size="100,200">#Prologue
 
@@ -90,9 +137,9 @@ Even though what little info I had been able to gather had said the population w
 
 //Hell yeah, crow. Become ungovernable.// Immediately mind fills with images of news reports and memes.
 &lt;==&gt;
-* &lt;a href=&quot;https://external-preview.redd.it/ZlXzHWUzl5suHDgDqPAZrS_9y3BA2i3RHhU5SpZefok.jpg?width=640&amp;crop=smart&amp;auto=webp&amp;s=7d15cd1ca07808038f513c031ecda55771b5bcb&quot; target=&quot;_blank&quot;&gt;Kids piling snow up against the school doors to create eternal recess.&lt;/a&gt;
+* &lt;a href=&quot;https://external-preview.redd.it/ZlXzHWUzl5suHDgDqPAZrS_9y3BA2i3RHhU5SpZefok.jpg?auto=webp&amp;s=282f6848fbd85e754ca3c55964fa9b73ec27fc06&quot; target=&quot;_blank&quot;&gt;Kids piling snow up against the school doors to create eternal recess.&lt;/a&gt;
 * &lt;a href=&quot;https://www.bloomberg.com/graphics/2019-hong-kong-protesters-umbrellas&quot; target=&quot;_blank&quot;&gt;Protesters using umbrellas against facial recognition and pepper spray.&lt;/a&gt; 
-* &lt;a href=&quot;https://i.imgflip.com/5eoekk.jpg&quot; target=&quot;_blank&quot;&gt; A black lab bringing its owner the //No dogs// sign.&lt;/a&gt;
+* &lt;a href=&quot;https://i.imgflip.com/5eoekk.jpg&quot; target=&quot;_blank&quot;&gt;A black lab bringing its owner the //No dogs// sign.&lt;/a&gt;
 * Every online naming poll ending up with a version of either //Boaty McBoatface// or //Adolf Hitler&#39;s School for Girls//. 
 * Some guy getting a free soda refill in his KFC bucket.
 * &lt;a href=&quot;https://i.kym-cdn.com/photos/images/original/002/121/880/e84.jpg&quot; target=&quot;_blank&quot;&gt;Football mascot Gritty running from the feds.&lt;/a&gt;  
@@ -101,7 +148,7 @@ The internet has fully ruined my brain. There may come a point where I can commu
 
 I pull the letter from the whistleblower out of my pocket - yes, someone sent me an honest to god, typewritten letter in the year of our Lord 20██. It already has a bunch of coffee stains on it from me using it as a coaster while I was considering taking the offer, but it said something about a hotel and right now my brain is too full of memes to remember its name.
 
-[[Read the email.]]</tw-passagedata><tw-passagedata pid="3" name="Read the email." tags="" position="703,396.5" size="200,100">(set: $hasInventory to true)
+[[I reread the email.|Read the email.]]</tw-passagedata><tw-passagedata pid="3" name="Read the email." tags="" position="703,396.5" size="200,100">(set: $hasInventory to true)
 
 Dear (input-box: bind $name, &quot;X===&quot;,1),
 &lt;blockquote&gt;
@@ -148,8 +195,7 @@ Regards, Peter
 </tw-passagedata><tw-passagedata pid="4" name="Things wrong with that email" tags="" position="701,262.5" size="100,100">Firstly, if he&#39;d been following my work for the past couple years, he would have known that I haven&#39;t had any. //Doctor Death// was the last thing I did. 
 
 Secondly, while //Doctor Death// did blow &quot;that whole thing&quot; wide open, it also heavily featured my face. So now when I walk into an office lobby, the receptionist stalls me while the execs start shredding evidence. I can&#39;t exactly call myself an investigative reporter anymore when all I&#39;ve done since //Doctor Death// is write about city council meetings until getting fired for lack of motivation. 
-
-More like //(link: &quot;Doctor Death of My Career&quot;) [(replace: &quot;Doctor Death&quot;)[Doctor Death of My Career])]//. 
+(link: &quot;More like //Doctor Death of My Career//&quot;) [(replace: &quot;Doctor Death&quot;)[Doctor Death of My Career.]]
 
 Third, even putting aside all the routine conspiracy theory shit, he calls that &quot;Institute&quot; by three different saints in just this short message, making it a hell to research or fact check. 
 
